@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "packetcapture": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\Fhw20\\Desktop\\Code\\PacketCapture-MCP\\dist\\index.js"
+      ],
+      "env": {},
+      "disabled": false,
+      "alwaysAllow": []
+    }
+  }
+}

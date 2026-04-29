@@ -75,6 +75,36 @@ npm start
 
 推荐生产使用 `dist/index.js`，因为 MCP 客户端启动更稳定，也避免运行时 TypeScript 编译成本。
 
+### 3.1 IDE / MCP 客户端发现与启动
+
+`package.json` 提供了面向 MCP 客户端的稳定启动脚本：
+
+```powershell
+npm run mcp:start
+```
+
+该脚本等价于 `node dist/index.js`，适合 IDE、Claude Desktop、Cursor、Windsurf 或其他 MCP 客户端在已构建后启动本地 server。开发时可以使用：
+
+```powershell
+npm run mcp:dev
+```
+
+推荐在客户端配置里优先使用 npm 脚本，避免直接绑定到后续可能变化的实现路径：
+
+```json
+{
+  "command": "npm",
+  "args": [
+    "--prefix",
+    "C:\\Users\\Fhw20\\Desktop\\Code\\PacketCapture-MCP",
+    "run",
+    "mcp:start"
+  ]
+}
+```
+
+更多可复制配置见 [`docs/mcp-client-config.md`](docs/mcp-client-config.md)，覆盖 Claude Desktop、Cursor、VS Code/Cline、VS Code/Roo Code，并同时提供直接运行 `dist/index.js` 与通过 `npm start` 启动两种模板。基础 JSON 示例位于 [`examples/mcp-client-config.dist-node.json`](examples/mcp-client-config.dist-node.json) 和 [`examples/mcp-client-config.npm-start.json`](examples/mcp-client-config.npm-start.json)。
+
 ## 4. 推荐工作流
 
 典型操作顺序：

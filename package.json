@@ -3,17 +3,47 @@
   "version": "0.1.0",
   "description": "MCP server for automated packet capture and Reqable export analysis",
   "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "bin": {
-    "packetcapture-mcp": "dist/index.js"
+    "packetcapture-mcp": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
+    "mcp:start": "node dist/index.js",
+    "mcp:dev": "tsx src/index.ts",
     "dev": "tsx src/index.ts",
-    "check": "tsc -p tsconfig.json --noEmit"
+    "check": "tsc -p tsconfig.json --noEmit",
+    "validate:mcp": "node examples/mcp-stdio-acceptance.mjs",
+    "acceptance:mcp": "npm run validate:mcp",
+    "smoke:mcp": "node examples/smoke-test.mjs",
+    "smoke:replay": "node examples/replay-loopback-smoke-test.mjs"
+  },
+  "files": [
+    "dist",
+    "docs",
+    "examples",
+    "README.md"
+  ],
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaoCreate-Wen/PacketCapture-MCP.git"
+  },
+  "homepage": "https://github.com/MaoCreate-Wen/PacketCapture-MCP#readme",
+  "bugs": {
+    "url": "https://github.com/MaoCreate-Wen/PacketCapture-MCP/issues"
   },
   "keywords": [
     "mcp",
+    "mcp-server",
+    "model-context-protocol",
     "packet-capture",
     "har",
     "reqable",
