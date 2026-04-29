@@ -4,6 +4,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { analyzeCapture } from "./analyzer.js";
+import { startGuiServer } from "./guiServer.js";
 import { buildHttpExchange } from "./httpMessages.js";
 import { parseCaptureContent, parseCurlCapture } from "./parsers.js";
 import { buildReplayRequest, replayHttpRequest, type ReplayRequestOptions, type ReplayRequestPlan, type ReplayResult } from "./replay.js";
@@ -654,6 +655,10 @@ server.registerTool(
 );
 
 async function main(): Promise<void> {
+  if (isGuiEnabled()) {
+    const gui = await startGuiServer();
+    console.error(`PacketCapture-MCP GUI listening at ${gui.url}`);
+  }
   const transport = new StdioServerTransport();
   await server.connect(transport);
 }
@@ -667,6 +672,11 @@ function jsonResult(value: unknown) {
   return {
     content: [{ type: "text" as const, text: JSON.stringify(value, null, 2) }],
   };
+}
+
+function isGuiEnabled(): boolean {
+  const value = process.env.PACKETCAPTURE_GUI ?? process.env.PACKETCAPTURE_CONSOLE;
+  return value === "1" || value?.toLowerCase() === "true";
 }
 
 function textResult(text: string) {

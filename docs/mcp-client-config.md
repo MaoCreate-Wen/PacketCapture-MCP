@@ -312,6 +312,20 @@ Add these variables to the server entry's `env` object only when you need to ove
 }
 ```
 
+## Optional GUI Environment
+
+Add these variables to a Codex, Claude Code, Cursor, VS Code, or other MCP stdio server entry when you want the Web GUI to start in the same Node process as the MCP server:
+
+```json
+{
+  "PACKETCAPTURE_GUI": "1",
+  "PACKETCAPTURE_GUI_HOST": "127.0.0.1",
+  "PACKETCAPTURE_GUI_PORT": "9420"
+}
+```
+
+When this mode is enabled, captures imported through MCP tools and traffic received through Reqable Report Server are visible in the browser at `http://127.0.0.1:9420/`.
+
 On Windows, if the client reports `spawn npm ENOENT`, change `"command": "npm"` to `"command": "npm.cmd"` or use the direct `node dist/index.js` template.
 
 ## Development Configuration

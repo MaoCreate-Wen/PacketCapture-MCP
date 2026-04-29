@@ -113,6 +113,43 @@ claude mcp get packetcapture
 npm run validate:cli
 ```
 
+### 3.2 本地 GUI 控制台
+
+本项目提供一个本地 Web GUI，用于在浏览器中查看 capture、session、请求报文、响应报文和分析结果，也可以启动或停止 Reqable Report Server。
+
+独立启动 GUI：
+
+```powershell
+npm run build
+npm run gui
+```
+
+默认监听：
+
+```text
+http://127.0.0.1:9420/
+```
+
+开发模式：
+
+```powershell
+npm run gui:dev
+```
+
+如果希望 Codex、Claude Code、Cursor、VS Code 等 MCP 客户端连接 MCP server 时，同一个 Node 进程也启动 GUI，请给 MCP server 配置环境变量：
+
+```json
+{
+  "PACKETCAPTURE_GUI": "1",
+  "PACKETCAPTURE_GUI_PORT": "9420",
+  "PACKETCAPTURE_GUI_HOST": "127.0.0.1"
+}
+```
+
+这种模式下，MCP 工具导入或 Reqable 实时接收的 capture 会和 GUI 共享同一份进程内状态。也就是说，通过 MCP 抓到或导入的数据，可以直接在浏览器控制台里看到。
+
+GUI 写操作会校验页面内置的本地 API token，并默认只绑定 `127.0.0.1`。不要把 GUI 绑定到公网地址，也不要在未脱敏的情况下共享完整报文截图。
+
 ## 4. 推荐工作流
 
 典型操作顺序：
