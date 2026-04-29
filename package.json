@@ -18,6 +18,7 @@
     "dev": "tsx src/index.ts",
     "check": "tsc -p tsconfig.json --noEmit",
     "validate:mcp": "node examples/mcp-stdio-acceptance.mjs",
+    "validate:cli": "node examples/cli-mcp-discovery-check.mjs",
     "acceptance:mcp": "npm run validate:mcp",
     "smoke:mcp": "node examples/smoke-test.mjs",
     "smoke:replay": "node examples/replay-loopback-smoke-test.mjs"

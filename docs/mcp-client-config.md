@@ -7,6 +7,8 @@ Ready-to-copy JSON files are available under `docs/clients/`:
 - `vscode-mcp.example.json`: VS Code workspace MCP schema using `servers`.
 - `cursor-mcp.example.json`: Cursor project or user MCP schema using `mcpServers`.
 - `claude-desktop-config.example.json`: Claude Desktop `claude_desktop_config.json` shape.
+- `claude-code-project-mcp.example.json`: Claude Code project-scoped `.mcp.json` shape.
+- `codex-config.example.toml`: Codex CLI `~/.codex/config.toml` shape.
 - `cline-mcp-settings.example.json`: Cline MCP settings shape.
 - `roo-mcp.example.json`: Roo Code MCP settings shape.
 - `windsurf-mcp_config.example.json`: Windsurf/Cascade MCP settings shape.
@@ -106,6 +108,71 @@ Direct `dist/index.js` startup:
   }
 }
 ```
+
+## Claude Code CLI
+
+Claude Code can read the project-scoped `.mcp.json` committed at the repository root. When Claude Code first sees a project-scoped MCP server, approve the server in the CLI prompt.
+
+The project config in this repository is:
+
+```json
+{
+  "mcpServers": {
+    "packetcapture": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "dist/index.js"
+      ],
+      "env": {}
+    }
+  }
+}
+```
+
+Equivalent CLI registration command:
+
+```powershell
+claude mcp add --scope project packetcapture -- node dist/index.js
+```
+
+Verify Claude Code can see and connect to the server:
+
+```powershell
+claude mcp get packetcapture
+claude mcp list
+```
+
+If Claude Code has cached a rejected project server choice, reset project choices and approve it again:
+
+```powershell
+claude mcp reset-project-choices
+```
+
+## Codex CLI
+
+Codex CLI reads MCP servers from `C:\Users\Fhw20\.codex\config.toml` on this machine. Add this server with the CLI:
+
+```powershell
+codex mcp add packetcapture -- node C:\Users\Fhw20\Desktop\Code\PacketCapture-MCP\dist\index.js
+```
+
+Or add the same entry manually:
+
+```toml
+[mcp_servers.packetcapture]
+command = "node"
+args = ['C:\Users\Fhw20\Desktop\Code\PacketCapture-MCP\dist\index.js']
+```
+
+Verify Codex can see the server:
+
+```powershell
+codex mcp get packetcapture
+codex mcp list
+```
+
+This repository also includes `docs/clients/codex-config.example.toml`.
 
 ## Cursor
 

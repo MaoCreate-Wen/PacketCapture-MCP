@@ -103,7 +103,15 @@ npm run mcp:dev
 }
 ```
 
-更多可复制配置见 [`docs/mcp-client-config.md`](docs/mcp-client-config.md)，覆盖 Claude Desktop、Cursor、VS Code/Cline、VS Code/Roo Code，并同时提供直接运行 `dist/index.js` 与通过 `npm start` 启动两种模板。基础 JSON 示例位于 [`examples/mcp-client-config.dist-node.json`](examples/mcp-client-config.dist-node.json) 和 [`examples/mcp-client-config.npm-start.json`](examples/mcp-client-config.npm-start.json)。
+更多可复制配置见 [`docs/mcp-client-config.md`](docs/mcp-client-config.md)，覆盖 Codex CLI、Claude Code CLI、Claude Desktop、Cursor、VS Code/Cline、VS Code/Roo Code，并同时提供直接运行 `dist/index.js` 与通过 `npm start` 启动两种模板。基础 JSON 示例位于 [`examples/mcp-client-config.dist-node.json`](examples/mcp-client-config.dist-node.json) 和 [`examples/mcp-client-config.npm-start.json`](examples/mcp-client-config.npm-start.json)。
+
+CLI 客户端可以用以下命令确认已经识别并连接：
+
+```powershell
+codex mcp get packetcapture
+claude mcp get packetcapture
+npm run validate:cli
+```
 
 ## 4. 推荐工作流
 
