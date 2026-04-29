@@ -56,7 +56,7 @@ npm start
 {
   "command": "node",
   "args": [
-    "C:\\Users\\Fhw20\\Desktop\\Code\\PacketCapture-MCP\\dist\\index.js"
+    "C:\\Users\\admin\\Desktop\\Code\\PacketCapture-MCP\\dist\\index.js"
   ]
 }
 ```
@@ -68,7 +68,7 @@ npm start
   "command": "npx",
   "args": [
     "tsx",
-    "C:\\Users\\Fhw20\\Desktop\\Code\\PacketCapture-MCP\\src\\index.ts"
+    "C:\\Users\\admin\\Desktop\\Code\\PacketCapture-MCP\\src\\index.ts"
   ]
 }
 ```
@@ -96,7 +96,7 @@ npm run mcp:dev
   "command": "npm",
   "args": [
     "--prefix",
-    "C:\\Users\\Fhw20\\Desktop\\Code\\PacketCapture-MCP",
+    "C:\\Users\\admin\\Desktop\\Code\\PacketCapture-MCP",
     "run",
     "mcp:start"
   ]
